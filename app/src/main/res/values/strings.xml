@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ChallengeFinal</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="Invalid_user_credentials">Invalid user credentials.</string>
 </resources>
