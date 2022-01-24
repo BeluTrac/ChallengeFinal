@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.22962962962962963" />
+        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.18" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.2931972789115646" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout-w936dp/activity_login.xml" value="0.168359375" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/activity_login.xml" value="0.22447916666666667" />
+        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
+        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/team_list_item.xml" value="0.33" />
       </map>
     </option>
   </component>
