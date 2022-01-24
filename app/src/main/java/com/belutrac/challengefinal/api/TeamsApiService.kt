@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface TeamsApiService{
     @GET("search_all_teams.php?s=Soccer&c=Argentina")
-    suspend fun getTeams()
+    suspend fun getTeams() : TeamsJsonResponse
 }
 
 private var retrofit = Retrofit.Builder()
