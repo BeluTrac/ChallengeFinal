@@ -1,17 +1,27 @@
 package com.belutrac.challengefinal.main
 
-import android.util.Log
 import com.belutrac.challengefinal.Team
 import com.belutrac.challengefinal.api.TeamsJsonResponse
 import com.belutrac.challengefinal.api.service
+import com.belutrac.challengefinal.database.TeamDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class MainRepository {
+class MainRepository(private val database: TeamDatabase) {
 
     suspend fun fetchTeams(): MutableList<Team> {
-        val teamsJsonResponse = service.getTeams()
-        val parsedList = parseTeamResult(teamsJsonResponse)
-        Log.d("REPOSITORY-DEBUG",parsedList.toString())
-        return parsedList
+        return withContext(Dispatchers.IO) {
+            val teamsJsonResponse = service.getTeams()
+            val parsedList = parseTeamResult(teamsJsonResponse)
+            database.teamDao.insertAll(parsedList)
+            fetchTeamsByDatabase()
+        }
+    }
+
+    suspend fun fetchTeamsByDatabase() : MutableList<Team>{
+        return withContext(Dispatchers.IO){
+            database.teamDao.getTeams()
+        }
     }
 
     private fun parseTeamResult(teamsJsonResponse: TeamsJsonResponse): MutableList<Team>{

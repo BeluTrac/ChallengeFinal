@@ -1,4 +1,8 @@
 package com.belutrac.challengefinal
 
-data class Team(val id : String, val name : String, val imgUrl : String) {
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "Teams")
+data class Team(@PrimaryKey val id : String, val name : String, val imgUrl : String) {
 }

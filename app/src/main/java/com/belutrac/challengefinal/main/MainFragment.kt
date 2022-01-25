@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.belutrac.challengefinal.R
+import com.belutrac.challengefinal.api.ApiResponseStatus
 import com.belutrac.challengefinal.databinding.FragmentMainBinding
 
 
@@ -27,13 +30,24 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         val adapter = TeamAdapter(requireActivity())
         recyclerView.adapter = adapter
-        Log.d("LALA","Entre a onCreateView")
+
         viewModel.teamsList.observe(requireActivity(), {
             teamList ->
-            Log.d("LALA", teamList.size.toString())
             adapter.submitList(teamList)
         })
-        viewModel.reloadTeams()
+
+        viewModel.statusLiveData.observe(requireActivity(), {
+            if (it == ApiResponseStatus.LOADING) {
+                binding.loadingWheel.visibility = View.VISIBLE
+            } else {
+                binding.loadingWheel.visibility = View.GONE
+            }
+
+            if (it == ApiResponseStatus.NO_INTERNET_CONNECTION) {
+                Toast.makeText(requireActivity(), R.string.no_internet_connection,
+                    Toast.LENGTH_SHORT).show()
+            }
+        })
         return rootView
     }
 }
