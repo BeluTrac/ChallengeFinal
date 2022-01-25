@@ -19,7 +19,7 @@ class MainRepository {
         val teamList = mutableListOf<Team>()
 
         for (team in teams) {
-            teamList.add(Team(team.strTeam,team.strTeamBadge))
+            teamList.add(Team(team.idTeam, team.strTeam,team.strTeamBadge))
         }
 
         return teamList

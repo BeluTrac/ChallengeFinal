@@ -1,4 +1,4 @@
 package com.belutrac.challengefinal
 
-data class Team(val name : String, val imgUrl : String) {
+data class Team(val id : String, val name : String, val imgUrl : String) {
 }
