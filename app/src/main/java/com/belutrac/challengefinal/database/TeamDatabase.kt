@@ -5,8 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.belutrac.challengefinal.Team
+import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [Team::class],version = 1)
+import androidx.room.migration.Migration
+
+
+
+
+@Database(entities = [Team::class],version = 2)
 abstract class  TeamDatabase : RoomDatabase(){
     abstract val teamDao : TeamDao
 }
@@ -25,3 +31,4 @@ fun getDatabase(context: Context): TeamDatabase{
         return INSTANCE
     }
 }
+

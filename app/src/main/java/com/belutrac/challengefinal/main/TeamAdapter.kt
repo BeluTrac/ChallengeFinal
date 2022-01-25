@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -33,9 +34,6 @@ class TeamAdapter (val context: Context) : ListAdapter<Team, TeamAdapter.TeamVie
         }
     }
 
-
-    lateinit var onItemClickListener: (Team) -> Unit
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
         val binding = TeamListItemBinding.inflate(LayoutInflater.from(parent.context))
         return TeamViewHolder( binding) //Devuelvo un objeto viewHolder con los elementos del item
@@ -49,6 +47,8 @@ class TeamAdapter (val context: Context) : ListAdapter<Team, TeamAdapter.TeamVie
         holder.bind(team)
     }
 
+    lateinit var onItemClickListener: (Team) -> Unit
+
     inner class TeamViewHolder( private val binding: TeamListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -57,12 +57,8 @@ class TeamAdapter (val context: Context) : ListAdapter<Team, TeamAdapter.TeamVie
             loadImage(binding.imgItem, team.imgUrl )
             binding.executePendingBindings()
             binding.root.setOnClickListener {
-                if (::onItemClickListener.isInitialized) //No entiendo que hace esto
-                {
+                if(::onItemClickListener.isInitialized)
                     onItemClickListener(team)
-                } else {
-                    Log.d(TAG, "OnItemClickListener not initialized")
-                }
             }
         }
 

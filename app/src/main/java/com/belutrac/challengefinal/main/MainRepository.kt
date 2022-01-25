@@ -29,7 +29,17 @@ class MainRepository(private val database: TeamDatabase) {
         val teamList = mutableListOf<Team>()
 
         for (team in teams) {
-            teamList.add(Team(team.idTeam, team.strTeam,team.strTeamBadge))
+            val id = team.idTeam
+            val name = team.strTeam ?: ""
+            val formedYear = team.intFormedYear ?: ""
+            val imgUrl = team.strTeamBadge ?: ""
+            val stadiumName = team.strStadium ?: ""
+            val stadiumCap = team.intStadiumCapacity ?: ""
+            val stadiumLocation = team.strStadiumLocation ?: ""
+            val description = team.strDescriptionEN ?: ""
+            val website = team.strWebsite ?: ""
+           val myTeam = Team(id, name, formedYear,imgUrl,stadiumName,stadiumCap,stadiumLocation,description,website)
+            teamList.add(myTeam)
         }
 
         return teamList

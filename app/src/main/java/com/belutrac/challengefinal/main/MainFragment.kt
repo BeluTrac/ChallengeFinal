@@ -1,5 +1,7 @@
 package com.belutrac.challengefinal.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,10 +11,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.belutrac.challengefinal.R
+import com.belutrac.challengefinal.Team
 import com.belutrac.challengefinal.api.ApiResponseStatus
 import com.belutrac.challengefinal.databinding.FragmentMainBinding
+import com.belutrac.challengefinal.detail.DetailActivity
+import java.lang.ClassCastException
 
 
 class MainFragment : Fragment() {
@@ -30,6 +36,10 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         val adapter = TeamAdapter(requireActivity())
         recyclerView.adapter = adapter
+
+        adapter.onItemClickListener = {
+            startActivityDetail(it)
+        }
 
         viewModel.teamsList.observe(requireActivity(), {
             teamList ->
@@ -50,4 +60,11 @@ class MainFragment : Fragment() {
         })
         return rootView
     }
+
+    private fun startActivityDetail (team : Team) {
+        val intent =  Intent(this.context, DetailActivity::class.java)
+        intent.putExtra(DetailActivity.TEAM_KEY,team)
+        startActivity(intent)
+    }
+
 }

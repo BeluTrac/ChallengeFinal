@@ -7,5 +7,6 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.belutrac.challengefinal.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+    </fragment>
 </navigation>
