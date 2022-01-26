@@ -1,4 +1,4 @@
-package com.belutrac.challengefinal.main
+package com.belutrac.challengefinal.favorites
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -17,9 +17,9 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
-private val TAG = TeamAdapter::class.java.simpleName
+private val TAG = FavAdapter::class.java.simpleName
 
-class TeamAdapter (val context: Context) : ListAdapter<Team, TeamAdapter.TeamViewHolder>(
+class FavAdapter (val context: Context) : ListAdapter<Team, FavAdapter.TeamViewHolder>(
     DiffCallback
 ) {
     companion object DiffCallback : DiffUtil.ItemCallback<Team>() {
@@ -31,9 +31,6 @@ class TeamAdapter (val context: Context) : ListAdapter<Team, TeamAdapter.TeamVie
             return oldItem == newItem
         }
     }
-
-    lateinit var onItemClickListener: (Team) -> Unit
-    lateinit var onIcnFavClickListener: (Team) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
         val binding = TeamListItemBinding.inflate(LayoutInflater.from(parent.context))
@@ -53,29 +50,9 @@ class TeamAdapter (val context: Context) : ListAdapter<Team, TeamAdapter.TeamVie
 
         fun bind(team: Team) {
             binding.tvName.text = team.name
-            setFavIcn(team.isFav)
+
             loadImage(binding.imgItem, team.imgUrl )
             binding.executePendingBindings()
-            binding.root.setOnClickListener {
-                if(::onItemClickListener.isInitialized)
-                    onItemClickListener(team)
-            }
-
-            binding.icnFav.setOnClickListener {
-                setFavIcn(!team.isFav)
-                if(::onIcnFavClickListener.isInitialized)
-                    onIcnFavClickListener(team)
-            }
-        }
-
-        fun setFavIcn(isFav : Boolean){
-            if(isFav)
-            {
-                binding.icnFav.setImageResource(R.drawable.ic_baseline_favorite_24)
-            }else
-            {
-                binding.icnFav.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-            }
         }
 
         fun loadImage(imageView: ImageView, imgUrl: String)

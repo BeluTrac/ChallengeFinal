@@ -30,17 +30,20 @@
             android:layout_alignParentBottom="true">
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/icn_home"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:icon="@drawable/ic_baseline_home_24"/>
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/icn_fav"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:icon="@drawable/ic_baseline_favorite_24"
                 />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/icn_map"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:icon="@drawable/ic_baseline_location_on_24"/>

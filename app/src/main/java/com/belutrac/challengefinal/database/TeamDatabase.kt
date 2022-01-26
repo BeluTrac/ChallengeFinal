@@ -5,16 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.belutrac.challengefinal.Team
-import androidx.sqlite.db.SupportSQLiteDatabase
 
-import androidx.room.migration.Migration
-
-
-
-
-@Database(entities = [Team::class],version = 2)
+@Database(entities = [Team::class, Favorites::class],version = 1)
 abstract class  TeamDatabase : RoomDatabase(){
     abstract val teamDao : TeamDao
+    abstract val favDao : FavDao
 }
 
 private lateinit var INSTANCE: TeamDatabase

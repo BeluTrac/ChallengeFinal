@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/mainFragment">
 
@@ -8,5 +9,18 @@
         android:id="@+id/mainFragment"
         android:name="com.belutrac.challengefinal.main.MainFragment"
         android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_favFragment2"
+            app:destination="@id/favFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favFragment2"
+        android:name="com.belutrac.challengefinal.favorites.FavFragment"
+        android:label="fragment_fav"
+        tools:layout="@layout/fragment_fav" >
+        <action
+            android:id="@+id/action_favFragment2_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

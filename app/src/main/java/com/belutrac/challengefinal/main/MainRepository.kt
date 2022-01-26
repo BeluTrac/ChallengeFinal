@@ -3,6 +3,7 @@ package com.belutrac.challengefinal.main
 import com.belutrac.challengefinal.Team
 import com.belutrac.challengefinal.api.TeamsJsonResponse
 import com.belutrac.challengefinal.api.service
+import com.belutrac.challengefinal.database.Favorites
 import com.belutrac.challengefinal.database.TeamDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -18,9 +19,29 @@ class MainRepository(private val database: TeamDatabase) {
         }
     }
 
-    suspend fun fetchTeamsByDatabase() : MutableList<Team>{
+    suspend fun fetchTeamsByDatabase() : MutableList<Team> {
         return withContext(Dispatchers.IO){
             database.teamDao.getTeams()
+        }
+    }
+
+    suspend fun fetchFavorites() : MutableList<Favorites>
+    {
+        return withContext(Dispatchers.IO){
+            database.favDao.getFavs()
+        }
+    }
+
+    suspend fun updateFavoriteTeam(id : String,isFav :Boolean){
+        withContext(Dispatchers.IO)
+        {
+           if(isFav){
+               database.favDao.insert(Favorites(id))
+           }
+            else
+           {
+               database.favDao.delete(id)
+           }
         }
     }
 
@@ -38,10 +59,9 @@ class MainRepository(private val database: TeamDatabase) {
             val stadiumLocation = team.strStadiumLocation ?: ""
             val description = team.strDescriptionEN ?: ""
             val website = team.strWebsite ?: ""
-           val myTeam = Team(id, name, formedYear,imgUrl,stadiumName,stadiumCap,stadiumLocation,description,website)
+            val myTeam = Team(id, name, formedYear,imgUrl,stadiumName,stadiumCap,stadiumLocation,description,website, false)
             teamList.add(myTeam)
         }
-
         return teamList
     }
 }

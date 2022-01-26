@@ -6,7 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.belutrac.challengefinal.Team
+import com.belutrac.challengefinal.TeamFav
 import com.belutrac.challengefinal.api.ApiResponseStatus
+import com.belutrac.challengefinal.database.Favorites
 import com.belutrac.challengefinal.database.getDatabase
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
@@ -24,19 +26,20 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
         get() = _statusLiveData
 
     private val database = getDatabase(application)
-    private val repository = MainRepository(database)
+    private var repository = MainRepository(database)
 
     init{
         reloadTeams()
     }
 
     fun reloadTeams() {
-        val repository = MainRepository(database)
         viewModelScope.launch {
             //TODO: NO ANDA SIN INTERNET
             _statusLiveData.value = ApiResponseStatus.LOADING
             try {
-                _teamsList.value = repository.fetchTeams()
+                val teams = repository.fetchTeams()
+                val favs = repository.fetchFavorites()
+                _teamsList.value = parseFavs(teams,favs)
                 _statusLiveData.value = ApiResponseStatus.DONE
             } catch (e: UnknownHostException) {
                 if (teamsList.value == null || teamsList.value!!.isEmpty()) {
@@ -47,4 +50,30 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
             }
         }
     }
+
+    private fun parseFavs(teams: MutableList<Team>, favs: MutableList<Favorites>): MutableList<Team>? {
+        for (myTeam in teams){
+            myTeam.isFav = favs.map { it.id }.contains(myTeam.id)
+        }
+        return teams
+    }
+
+    fun updateFavorite(team : Team){
+        viewModelScope.launch {
+            repository.updateFavoriteTeam(team.id, !team.isFav)
+
+            var teamLisAux = _teamsList.value
+            teamLisAux?.forEach {
+                if(it.id == team.id)
+                {
+                    it.isFav = !it.isFav
+                }
+            }
+        }
+
+
+
+    }
+
+
 }

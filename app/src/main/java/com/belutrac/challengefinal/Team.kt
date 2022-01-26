@@ -2,6 +2,7 @@ package com.belutrac.challengefinal
 
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
@@ -15,6 +16,7 @@ data class Team(@PrimaryKey val id: String,
                 val stadiumCapacity: String,
                 val location: String,
                 val description: String,
-                val website: String
+                val website: String,
+                var isFav : Boolean
 ) : Parcelable{
 }
