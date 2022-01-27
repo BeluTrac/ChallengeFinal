@@ -20,6 +20,7 @@
             android:layout_height="match_parent"
             app:defaultNavHost = "true"
             app:navGraph="@navigation/main_nav_graph"
+            android:layout_above="@+id/tabLayout"
             />
 
         <com.google.android.material.tabs.TabLayout
