@@ -13,4 +13,6 @@
     <string name="stadium_name">Stadium name</string>
     <string name="capacity_text">%s people</string>
     <string name="stadium_capacity">Stadium capacity</string>
+    <string name="log_out">Log out</string>
+    <string name="search">Search</string>
 </resources>
