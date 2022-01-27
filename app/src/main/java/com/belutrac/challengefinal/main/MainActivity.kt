@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -20,6 +21,7 @@ import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity(){
     private lateinit var loginViewModel : LoginViewModel
+    private lateinit var mainMenu : Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity(){
         setContentView(binding.root)
         val tab = binding.tabLayout
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
         tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val tabItem = tab.position
@@ -37,6 +40,7 @@ class MainActivity : AppCompatActivity(){
 
               if(tabItem == 1){
                   findNavController(R.id.main_navigation_container).navigate(MainFragmentDirections.actionMainFragmentToFavFragment2())
+
               }
 
                 if(tabItem == 2){
@@ -46,7 +50,6 @@ class MainActivity : AppCompatActivity(){
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

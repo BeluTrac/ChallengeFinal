@@ -115,5 +115,4 @@ class MainFragment : Fragment() {
         intent.putExtra(DetailActivity.TEAM_KEY,team)
         startActivity(intent)
     }
-
 }
