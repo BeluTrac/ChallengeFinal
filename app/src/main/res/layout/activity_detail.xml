@@ -52,6 +52,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     tools:text="Fundado en 1999" />
+
+          <TextView
+              android:id="@+id/web_oficial"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Web Oficial"></TextView>
             </LinearLayout>
         </LinearLayout>
 

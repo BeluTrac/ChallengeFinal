@@ -1,8 +1,11 @@
 package com.belutrac.challengefinal.detail
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import com.belutrac.challengefinal.R
 import com.belutrac.challengefinal.Team
@@ -36,6 +39,19 @@ class DetailActivity : AppCompatActivity() {
         )
         binding.tvStadiumName.text = teamInfo?.stadiumName ?: ""
         binding.tvStadiumLocation.text = teamInfo?.location ?: ""
+
+        if(teamInfo?.website?.isNotBlank() == true)
+        {
+            binding.webOficial.setOnClickListener {
+                var uri = Uri.parse("https://".plus(teamInfo.website))
+                var intent = Intent(Intent.ACTION_VIEW,uri)
+                startActivity(intent)
+            }
+        }else
+        {
+            binding.webOficial.visibility = View.INVISIBLE
+        }
+
         teamInfo?.imgUrl?.let { loadImage(binding.imgTeam, it) }
         setContentView(binding.root)
     }
