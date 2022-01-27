@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "467017753475",
+    "project_id": "challengefinal-belutrac",
+    "storage_bucket": "challengefinal-belutrac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467017753475:android:6c1069c7eb19b5782b4cb6",
+        "android_client_info": {
+          "package_name": "com.belutrac.challengefinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467017753475-tcqd4l56bhcp8jpnvtf43sbfm7be28gp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9WjVFy0viVmi_PJzkg5XhNrT5pwzQtyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467017753475-tcqd4l56bhcp8jpnvtf43sbfm7be28gp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
