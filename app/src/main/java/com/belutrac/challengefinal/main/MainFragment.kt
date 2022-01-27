@@ -43,8 +43,6 @@ class MainFragment : Fragment() {
             adapter.submitList(teamList)
         })
 
-
-
         viewModel.statusLiveData.observe(requireActivity(), {
             if (it == ApiResponseStatus.LOADING) {
                 binding.loadingWheel.visibility = View.VISIBLE

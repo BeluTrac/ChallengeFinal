@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.belutrac.challengefinal.R
 import com.belutrac.challengefinal.Team
+import com.belutrac.challengefinal.databinding.FavTeamListItemBinding
 import com.belutrac.challengefinal.databinding.TeamListItemBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -32,8 +33,10 @@ class FavAdapter (val context: Context) : ListAdapter<Team, FavAdapter.TeamViewH
         }
     }
 
+    lateinit var onItemClickListener: (Team) -> Unit
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
-        val binding = TeamListItemBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = FavTeamListItemBinding.inflate(LayoutInflater.from(parent.context))
         return TeamViewHolder( binding) //Devuelvo un objeto viewHolder con los elementos del item
     }
 
@@ -45,14 +48,18 @@ class FavAdapter (val context: Context) : ListAdapter<Team, FavAdapter.TeamViewH
         holder.bind(team)
     }
 
-    inner class TeamViewHolder( private val binding: TeamListItemBinding) :
+    inner class TeamViewHolder( private val binding: FavTeamListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(team: Team) {
             binding.tvName.text = team.name
-
             loadImage(binding.imgItem, team.imgUrl )
             binding.executePendingBindings()
+
+            binding.root.setOnClickListener {
+                if(::onItemClickListener.isInitialized)
+                    onItemClickListener(team)
+            }
         }
 
         fun loadImage(imageView: ImageView, imgUrl: String)

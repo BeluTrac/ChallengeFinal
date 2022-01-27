@@ -36,13 +36,12 @@
                 android:layout_gravity="center_vertical"
                 android:padding="4dp" />
 
-            <ImageButton
-                android:id="@+id/icn_fav"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:src="@drawable/ic_baseline_chevron_right_24"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_baseline_favorite_border_24"/>
+                android:contentDescription="@string/arrow" />
         </LinearLayout>
     </RelativeLayout>
 </layout>

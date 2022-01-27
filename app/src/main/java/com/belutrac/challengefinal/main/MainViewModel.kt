@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.belutrac.challengefinal.Team
-import com.belutrac.challengefinal.TeamFav
 import com.belutrac.challengefinal.api.ApiResponseStatus
 import com.belutrac.challengefinal.database.Favorites
 import com.belutrac.challengefinal.database.getDatabase
@@ -25,8 +24,7 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
     val statusLiveData: LiveData<ApiResponseStatus>
         get() = _statusLiveData
 
-    private val database = getDatabase(application)
-    private var repository = MainRepository(database)
+    private var repository = MainRepository(application)
 
     init{
         reloadTeams()
