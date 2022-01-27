@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="sign_in">Iniciar sesion</string>
+    <string name="Invalid_user_credentials">Usuario o contraseña incorrecto</string>
+    <string name="team_badge">Escudo del equipo</string>
+    <string name="arrow">Flecha</string>
+    <string name="no_internet_connection">No hay conexion a internet</string>
+    <string name="founded_in_year">Fundado en %s</string>
+    <string name="example_description">Club Atlético Alvarado is an Argentine football club from the city of Mar del Plata, Buenos Aires Province. The team currently plays in the Primera B Nacional, the 2nd division of the Argentine football league system.r\nr\nThe club has played at the highest level of Argentine football on only one occasion, more specifically in the 1978 Campeonato Nacional, which coincided with the 50th anniversary of its foundation. Alvarado participated in Group D of that tournament, finishing 7th of 8 teams. The team\'s most notable results that year were two 1-1 draws with Quilmes, the 1978 Metropolitano champion, a 4-4 draw with Atlanta and a great 5-0 victory over San Lorenzo.r\nr\nIn May 1992 Alvarado reached the Torneo Argentino A finals, only to lose the chance of promotion to the Primera B Nacional to Arsenal de Sarandí. At the end of the 2008-09 season the club was relegated from Torneo Argentino B after losing its playoff games at the hands of Crucero del Norte. Alvarado returned to the Torneo Argentino A in June 2012, after defeating Deportivo Roca by penalties in the playoffs.</string>
+    <string name="stadium_name">Nombre del estadio</string>
+    <string name="capacity_text">%s personas</string>
+    <string name="stadium_capacity">Capacidad del estadio</string>
+    <string name="log_out">Cerrar sesion</string>
+    <string name="search">Buscar</string>
+    <string name="search_hint">Buscar</string>
+</resources>
