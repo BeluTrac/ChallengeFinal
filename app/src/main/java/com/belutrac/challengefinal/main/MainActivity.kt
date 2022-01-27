@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     override fun onOptionsItemSelected(item: MenuItem) : Boolean{
-        if(item.itemId == R.id.log_out){
+        if(item.itemId == R.id.log_out_item){
             loginViewModel.logout()
             startActivity(Intent(this,LoginActivity::class.java))
         }
