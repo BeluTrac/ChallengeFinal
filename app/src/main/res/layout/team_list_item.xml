@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -9,40 +10,49 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardMaxElevation="10dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-
             <ImageView
                 android:id="@+id/img_item"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                tools:src="@drawable/boca_escudo"
-                android:contentDescription="@string/team_badge" />
+                android:contentDescription="@string/team_badge"
+                tools:src="@drawable/boca_escudo" />
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="Boca Juniors"
-                android:textSize="20sp"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_gravity="center_vertical"
-                android:padding="4dp" />
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:textSize="20sp"
+                tools:text="Boca Juniors" />
 
             <ImageButton
                 android:id="@+id/icn_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_baseline_favorite_border_24"/>
+                android:background="@color/white"
+                android:src="@drawable/ic_baseline_favorite_border_24" />
         </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 </layout>
