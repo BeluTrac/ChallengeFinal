@@ -73,5 +73,12 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
 
     }
 
+    fun searchTeamsByName(newText: String) {
+        viewModelScope.launch {
+            val teams = repository.fetchTeamsByDescription(newText)
+            val favs = repository.fetchFavorites()
+            _teamsList.value = parseFavs(teams,favs)
+        }
+    }
 
 }

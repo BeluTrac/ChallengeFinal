@@ -48,6 +48,12 @@ class MainRepository(application: Application) {
         }
     }
 
+    suspend fun fetchTeamsByDescription(query: String) : MutableList<Team> {
+        return withContext(Dispatchers.IO){
+            database.teamDao.getTeamsByDescription(query)
+        }
+    }
+
     suspend fun updateFavoriteTeam(id : String,isFav :Boolean){
         withContext(Dispatchers.IO)
         {
