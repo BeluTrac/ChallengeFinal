@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(){
               }
 
                 if(tabItem == 2){
-
+                    findNavController(R.id.main_navigation_container).navigate(MainFragmentDirections.actionMainFragmentToMapsFragment())
                 }
             }
             override fun onTabUnselected(tab: TabLayout.Tab) {}

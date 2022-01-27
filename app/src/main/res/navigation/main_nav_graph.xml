@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_mainFragment_to_favFragment2"
             app:destination="@id/favFragment2" />
+        <action
+            android:id="@+id/action_mainFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
 
     <fragment
@@ -23,4 +26,9 @@
             android:id="@+id/action_favFragment2_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.belutrac.challengefinal.map.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>
