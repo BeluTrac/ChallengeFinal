@@ -1,20 +1,14 @@
 package com.belutrac.challengefinal.main
 
-import android.app.SearchManager
-import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.belutrac.challengefinal.R
 import com.belutrac.challengefinal.databinding.ActivityMainBinding
-import com.belutrac.challengefinal.favorites.FavFragmentDirections
 import com.belutrac.challengefinal.login.LoginActivity
 import com.belutrac.challengefinal.login.LoginViewModel
 import com.google.android.material.tabs.TabLayout
@@ -32,18 +26,21 @@ class MainActivity : AppCompatActivity(){
 
         tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                var navController = findNavController(R.id.main_navigation_container)
                 val tabItem = tab.position
 
                 if(tabItem == 0){
-                    findNavController(R.id.main_navigation_container).navigate(FavFragmentDirections.actionFavFragment2ToMainFragment())
+                    navController.popBackStack(R.id.mainFragment,false)
                 }
 
               if(tabItem == 1){
-                  findNavController(R.id.main_navigation_container).navigate(MainFragmentDirections.actionMainFragmentToFavFragment2())
+                 navController.popBackStack(R.id.mainFragment,false)
+                  navController.navigate(MainFragmentDirections.actionMainFragmentToFavFragment2())
 
               }
 
                 if(tabItem == 2){
+                    navController.popBackStack(R.id.mainFragment,false)
                     findNavController(R.id.main_navigation_container).navigate(MainFragmentDirections.actionMainFragmentToMapsFragment())
                 }
             }

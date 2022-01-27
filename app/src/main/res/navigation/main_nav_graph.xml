@@ -21,11 +21,7 @@
         android:id="@+id/favFragment2"
         android:name="com.belutrac.challengefinal.favorites.FavFragment"
         android:label="fragment_fav"
-        tools:layout="@layout/fragment_fav" >
-        <action
-            android:id="@+id/action_favFragment2_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_fav" />
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.belutrac.challengefinal.map.MapsFragment"
