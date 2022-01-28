@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Equipos de futbol</string>
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
     <string name="sign_in">Iniciar sesion</string>
