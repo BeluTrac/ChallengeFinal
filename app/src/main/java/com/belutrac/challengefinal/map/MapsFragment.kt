@@ -14,23 +14,29 @@ import com.google.android.gms.maps.model.MarkerOptions
 import android.location.Geocoder
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.maps.GoogleMap
 
 class MapsFragment : Fragment() {
 
     private lateinit var viewModel : MapViewModel
+    private lateinit var latlngList : MutableList<LatLng>
     private val callback = OnMapReadyCallback { googleMap ->
 
-        viewModel.teamsList.observe(requireActivity(), Observer {
-        it ->
-            it.forEach {
-                if(!it.location.isNullOrBlank())
-                {
-                    val location = getLocationFromAddress(it.location)
-                    googleMap.addMarker(MarkerOptions().position(location).title("Marker in Sydney"))
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
-                }
+        val itemMap = viewModel.itemMapLiveData.value
+
+        itemMap?.run {
+            val marker = MarkerOptions().position(itemMap.latlng).title(itemMap.team.name)
+            if(itemMap.team.stadiumName.isNotBlank())
+            {
+                marker.snippet(itemMap.team.stadiumName)
             }
-        })
+            googleMap.addMarker(marker)
+        }
+
+        if(viewModel.teamsList.value?.size!! > 1) {
+                viewModel.updateMap()
+        }
+
     }
 
     override fun onCreateView(
@@ -46,12 +52,16 @@ class MapsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
+
+
+        viewModel.itemMapLiveData.observe(requireActivity()){
+            mapFragment?.getMapAsync(callback)
+        }
+
+        viewModel.teamsList.observe(requireActivity()){
+            viewModel.updateMap()
+        }
+
+        }
     }
 
-   fun getLocationFromAddress(address: String): LatLng{
-       val coder = Geocoder(requireActivity())
-       val address = coder.getFromLocationName(address,1)
-       return LatLng(address[0].latitude, address[0].longitude)
-   }
-}
