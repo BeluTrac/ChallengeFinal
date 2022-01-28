@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +31,8 @@ class MainFragment : Fragment() {
         val adapter = TeamAdapter(requireActivity())
         recyclerView.adapter = adapter
 
+
+
         adapter.onItemClickListener = {
             startActivityDetail(it)
         }
@@ -45,19 +46,23 @@ class MainFragment : Fragment() {
         })
 
         viewModel.statusLiveData.observe(requireActivity(), {
-            if (it == ApiResponseStatus.LOADING) {
-                binding.loadingWheel.visibility = View.VISIBLE
-            } else {
-                binding.loadingWheel.visibility = View.GONE
-            }
+           when(it){
+               ApiResponseStatus.LOADING -> {
+                   binding.loadingWheel.visibility = View.VISIBLE
+               }
+               ApiResponseStatus.DONE -> {
+                   binding.loadingWheel.visibility = View.GONE
+               }
+               ApiResponseStatus.NOT_INTERNET_CONNECTION-> {
+                   binding.loadingWheel.visibility = View.GONE
+               }
+               null -> {
 
-            if (it == ApiResponseStatus.NO_INTERNET_CONNECTION) {
-                Toast.makeText(
-                    requireActivity(), R.string.no_internet_connection,
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+               }
+           }
+
         })
+        viewModel.reloadTeamsFromDatabase()
         setHasOptionsMenu(true)
         return rootView
     }

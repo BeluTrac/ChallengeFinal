@@ -11,11 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class MainRepository(application: Application) {
-    private lateinit var database : TeamDatabase
-
-    init {
-        database = getDatabase(application)
-    }
+    private var database : TeamDatabase = getDatabase(application)
 
     suspend fun fetchTeams(): MutableList<Team> {
         return withContext(Dispatchers.IO) {
@@ -37,7 +33,7 @@ class MainRepository(application: Application) {
             val teams = database.teamDao.getTeams()
             val favs = database.favDao.getFavs()
 
-            teams.filter { favs.map { it.id }.contains(it.id) }
+            teams.filter { it -> favs.map { it.id }.contains(it.id) }
         }
     }
 

@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.belutrac.challengefinal.Team
 import com.belutrac.challengefinal.api.ApiResponseStatus
 import com.belutrac.challengefinal.database.Favorites
-import com.belutrac.challengefinal.database.getDatabase
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 
@@ -26,13 +25,8 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
 
     private var repository = MainRepository(application)
 
-    init{
-        reloadTeams()
-    }
-
     fun reloadTeams() {
         viewModelScope.launch {
-            //TODO: NO ANDA SIN INTERNET
             _statusLiveData.value = ApiResponseStatus.LOADING
             try {
                 val teams = repository.fetchTeams()
@@ -41,7 +35,7 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
                 _statusLiveData.value = ApiResponseStatus.DONE
             } catch (e: UnknownHostException) {
                 if (teamsList.value == null || teamsList.value!!.isEmpty()) {
-                    _statusLiveData.value = ApiResponseStatus.NO_INTERNET_CONNECTION
+                    _statusLiveData.value = ApiResponseStatus.NOT_INTERNET_CONNECTION
                 } else {
                     _statusLiveData.value = ApiResponseStatus.DONE
                 }
@@ -49,7 +43,7 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
         }
     }
 
-    private fun parseFavs(teams: MutableList<Team>, favs: MutableList<Favorites>): MutableList<Team>? {
+    private fun parseFavs(teams: MutableList<Team>, favs: MutableList<Favorites>): MutableList<Team> {
         for (myTeam in teams){
             myTeam.isFav = favs.map { it.id }.contains(myTeam.id)
         }
@@ -60,7 +54,7 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
         viewModelScope.launch {
             repository.updateFavoriteTeam(team.id, !team.isFav)
 
-            var teamLisAux = _teamsList.value
+            val teamLisAux = _teamsList.value
             teamLisAux?.forEach {
                 if(it.id == team.id)
                 {
@@ -68,9 +62,6 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
                 }
             }
         }
-
-
-
     }
 
     fun searchTeamsByName(newText: String) {
@@ -78,6 +69,16 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
             val teams = repository.fetchTeamsByDescription(newText)
             val favs = repository.fetchFavorites()
             _teamsList.value = parseFavs(teams,favs)
+        }
+    }
+
+    fun reloadTeamsFromDatabase() {
+        viewModelScope.launch {
+            _teamsList.value = repository.fetchTeamsByDatabase()
+            if (_teamsList.value!!.isEmpty())
+            {
+                reloadTeams()
+            }
         }
     }
 

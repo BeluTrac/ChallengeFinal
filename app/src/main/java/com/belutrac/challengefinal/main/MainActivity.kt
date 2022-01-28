@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.belutrac.challengefinal.R
+import com.belutrac.challengefinal.api.WorkerUtil
 import com.belutrac.challengefinal.databinding.ActivityMainBinding
 import com.belutrac.challengefinal.login.LoginActivity
 import com.belutrac.challengefinal.login.LoginViewModel
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val tab = binding.tabLayout
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
+        WorkerUtil.scheduleSync(this)
 
         tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
