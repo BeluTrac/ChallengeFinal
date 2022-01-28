@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -28,6 +29,8 @@ class DetailActivity : AppCompatActivity() {
         val binding = ActivityDetailBinding.inflate(layoutInflater)
         val extra = intent?.extras
         val teamInfo = extra?.getParcelable<Team>(TEAM_KEY)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         if (teamInfo == null) {
             finish()
@@ -66,9 +69,10 @@ class DetailActivity : AppCompatActivity() {
 
         teamInfo?.imgUrl?.let { loadImage(binding.imgTeam, it) }
         setContentView(binding.root)
+
     }
 
-    fun loadImage(imageView: ImageView, imgUrl: String) {
+    private fun loadImage(imageView: ImageView, imgUrl: String) {
         Glide.with(this).load(imgUrl).listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(
                 e: GlideException?,
@@ -92,7 +96,7 @@ class DetailActivity : AppCompatActivity() {
         }).error(R.drawable.ic_baseline_image_not_supported_24).into(imageView)
     }
 
-    fun setUrlOnClick(url : String, imgBtn : ImageButton)
+    private fun setUrlOnClick(url : String, imgBtn : ImageButton)
     {
         if (url.isNotBlank()) {
             imgBtn.setOnClickListener {
@@ -104,4 +108,13 @@ class DetailActivity : AppCompatActivity() {
             imgBtn.visibility = View.GONE
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        if(item.itemId==android.R.id.home){
+            onBackPressed()
+        }
+        return true
+    }
+
 }
