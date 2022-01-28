@@ -20,7 +20,7 @@ import com.bumptech.glide.request.target.Target
 
 private val TAG = FavAdapter::class.java.simpleName
 
-class FavAdapter (val context: Context) : ListAdapter<Team, FavAdapter.TeamViewHolder>(
+class FavAdapter(val context: Context) : ListAdapter<Team, FavAdapter.TeamViewHolder>(
     DiffCallback
 ) {
     companion object DiffCallback : DiffUtil.ItemCallback<Team>() {
@@ -37,7 +37,7 @@ class FavAdapter (val context: Context) : ListAdapter<Team, FavAdapter.TeamViewH
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
         val binding = FavTeamListItemBinding.inflate(LayoutInflater.from(parent.context))
-        return TeamViewHolder( binding) //Devuelvo un objeto viewHolder con los elementos del item
+        return TeamViewHolder(binding) //Devuelvo un objeto viewHolder con los elementos del item
     }
 
     override fun onBindViewHolder(
@@ -48,22 +48,21 @@ class FavAdapter (val context: Context) : ListAdapter<Team, FavAdapter.TeamViewH
         holder.bind(team)
     }
 
-    inner class TeamViewHolder( private val binding: FavTeamListItemBinding) :
+    inner class TeamViewHolder(private val binding: FavTeamListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(team: Team) {
             binding.tvName.text = team.name
-            loadImage(binding.imgItem, team.imgUrl )
+            loadImage(binding.imgItem, team.imgUrl)
             binding.executePendingBindings()
 
             binding.root.setOnClickListener {
-                if(::onItemClickListener.isInitialized)
+                if (::onItemClickListener.isInitialized)
                     onItemClickListener(team)
             }
         }
 
-        fun loadImage(imageView: ImageView, imgUrl: String)
-        {
+        fun loadImage(imageView: ImageView, imgUrl: String) {
             Glide.with(context).load(imgUrl).listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,

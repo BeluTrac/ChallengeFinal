@@ -8,7 +8,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.belutrac.challengefinal.R
@@ -19,16 +18,16 @@ import com.belutrac.challengefinal.detail.DetailActivity
 
 class MainFragment : Fragment() {
 
-    private lateinit var viewModel : MainViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentMainBinding.inflate(inflater, container,false)
+    ): View {
+        val binding = FragmentMainBinding.inflate(inflater, container, false)
         val rootView = binding.root
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-       val recyclerView = binding.recyclerView
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         val adapter = TeamAdapter(requireActivity())
         recyclerView.adapter = adapter
@@ -41,8 +40,7 @@ class MainFragment : Fragment() {
             viewModel.updateFavorite(it)
         }
 
-        viewModel.teamsList.observe(requireActivity(), {
-            teamList ->
+        viewModel.teamsList.observe(requireActivity(), { teamList ->
             adapter.submitList(teamList)
         })
 
@@ -54,8 +52,10 @@ class MainFragment : Fragment() {
             }
 
             if (it == ApiResponseStatus.NO_INTERNET_CONNECTION) {
-                Toast.makeText(requireActivity(), R.string.no_internet_connection,
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireActivity(), R.string.no_internet_connection,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
         setHasOptionsMenu(true)
@@ -67,15 +67,15 @@ class MainFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         val menuItem = menu.findItem(R.id.search_view)
         val sm = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu?.findItem(R.id.search_view)?.actionView as SearchView
+        val searchView = menu.findItem(R.id.search_view)?.actionView as SearchView
 
         searchView.setSearchableInfo(
             sm.getSearchableInfo(requireActivity().componentName)
         )
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextChange(newText: String?) : Boolean {
-                if(!newText.isNullOrBlank())
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (!newText.isNullOrBlank())
                     searchTeams(newText)
                 return true
             }
@@ -86,7 +86,7 @@ class MainFragment : Fragment() {
         })
 
         menuItem.setOnActionExpandListener(object :
-        MenuItem.OnActionExpandListener{
+            MenuItem.OnActionExpandListener {
 
             override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
                 searchTeams("")
@@ -110,9 +110,9 @@ class MainFragment : Fragment() {
     }
 
 
-    private fun startActivityDetail (team : Team) {
-        val intent =  Intent(this.context, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.TEAM_KEY,team)
+    private fun startActivityDetail(team: Team) {
+        val intent = Intent(this.context, DetailActivity::class.java)
+        intent.putExtra(DetailActivity.TEAM_KEY, team)
         startActivity(intent)
     }
 }

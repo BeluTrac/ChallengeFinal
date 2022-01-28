@@ -4,9 +4,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-interface TeamsApiService{
+interface TeamsApiService {
     @GET("search_all_teams.php?s=Soccer&c=Argentina")
-    suspend fun getTeams() : TeamsJsonResponse
+    suspend fun getTeams(): TeamsJsonResponse
 }
 
 private var retrofit = Retrofit.Builder()

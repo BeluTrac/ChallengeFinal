@@ -9,9 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.belutrac.challengefinal.Team
 import com.belutrac.challengefinal.main.ItemMap
 import com.belutrac.challengefinal.main.MainRepository
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -32,16 +30,16 @@ class MapViewModel (application: Application): AndroidViewModel(application) {
         loadTeams()
     }
 
-    fun loadTeams() {
+    private fun loadTeams() {
         viewModelScope.launch {
             _teamsList.value = repository.fetchTeamsByDatabase()
         }
     }
 
-    fun getLocationFromAddress(address: String): LatLng {
+    private fun getLocationFromAddress(address: String): LatLng {
         val coder = Geocoder(this.getApplication())
-        val address = coder.getFromLocationName(address,1)
-        return LatLng(address[0].latitude, address[0].longitude)}
+        val location = coder.getFromLocationName(address,1)
+        return LatLng(location[0].latitude, location[0].longitude)}
 
     fun updateMap()
     {
@@ -50,12 +48,10 @@ class MapViewModel (application: Application): AndroidViewModel(application) {
             withContext(Dispatchers.IO){
                 val team = _teamsList.value?.removeFirst()
 
-                if(team != null && team.location.isNotBlank())
-                {
-                    itemMap = ItemMap(team,getLocationFromAddress(team.location))
-                }else
-                {
-                    itemMap = _itemMapLiveData.value!!
+                itemMap = if(team != null && team.location.isNotBlank()) {
+                    ItemMap(team,getLocationFromAddress(team.location))
+                }else {
+                    _itemMapLiveData.value!!
                 }
             }
             _itemMapLiveData.value = itemMap

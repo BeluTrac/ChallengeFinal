@@ -6,11 +6,11 @@ import androidx.room.*
 interface FavDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(fav : Favorites)
+    fun insert(fav: Favorites)
 
     @Query("SELECT * FROM FAVORITES")
-    fun getFavs() : MutableList<Favorites>
+    fun getFavs(): MutableList<Favorites>
 
     @Query("DELETE FROM Favorites WHERE id = :id")
-    fun delete(id : String)
+    fun delete(id: String)
 }

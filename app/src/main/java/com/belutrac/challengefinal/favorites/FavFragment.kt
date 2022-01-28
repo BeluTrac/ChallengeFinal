@@ -9,17 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.belutrac.challengefinal.R
 import com.belutrac.challengefinal.Team
 import com.belutrac.challengefinal.databinding.FragmentFavBinding
-import com.belutrac.challengefinal.databinding.FragmentMainBinding
 import com.belutrac.challengefinal.detail.DetailActivity
-import com.belutrac.challengefinal.main.MainViewModel
 
 class FavFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentFavBinding.inflate(inflater, container,false)
+    ): View {
+        val binding = FragmentFavBinding.inflate(inflater, container, false)
         val rootView = binding.root
         val adapter = FavAdapter(requireActivity())
         val recyclerView = binding.recyclerView
@@ -27,8 +25,7 @@ class FavFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.adapter = adapter
 
-        viewModel.favList.observe(requireActivity(),{
-            list ->
+        viewModel.favList.observe(requireActivity(), { list ->
             adapter.submitList(list)
         })
 
@@ -36,12 +33,19 @@ class FavFragment : Fragment() {
             startActivityDetail(it)
         }
 
+        setHasOptionsMenu(true)
+
         return rootView
     }
 
-    private fun startActivityDetail (team : Team) {
-        val intent =  Intent(this.context, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.TEAM_KEY,team)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.removeItem(R.id.search_view)
+    }
+
+    private fun startActivityDetail(team: Team) {
+        val intent = Intent(this.context, DetailActivity::class.java)
+        intent.putExtra(DetailActivity.TEAM_KEY, team)
         startActivity(intent)
     }
 

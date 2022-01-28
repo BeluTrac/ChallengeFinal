@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseUser
 import javax.security.auth.login.LoginException
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var viewModel : LoginViewModel
+    lateinit var viewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +27,8 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
-        viewModel.state.observe(this){state ->
-            when{
+        viewModel.state.observe(this) { state ->
+            when {
                 (!state.loginError && state.user != null) -> { // Usuario logueado
                     onLogged(state.user)
                     startActivity(Intent(this, MainActivity::class.java))
@@ -37,23 +37,27 @@ class LoginActivity : AppCompatActivity() {
                 (!state.loginError && state.user == null) -> { // Usuario sin loguear o recien deslogueado
                 }
                 (state.loginError) -> { // El usuario intentó iniciar sesión y falló
-                    Toast.makeText(this, getString(R.string.Invalid_user_credentials), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        getString(R.string.Invalid_user_credentials),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-            }
+        }
 
         btnLogin.setOnClickListener {
             // En esta demo, el botón tiene 2 comportamientos dependiendo del estado de la sesión.
-                val mail = etMail.text.toString()
-                val pass = etPassword.text.toString()
-                val enviado = viewModel.login(mail, pass)
-                if (!enviado) Toast.makeText(
-                    this,
-                    "Ingrese usuario y contraseña",
-                    Toast.LENGTH_SHORT
-                ).show()
+            val mail = etMail.text.toString()
+            val pass = etPassword.text.toString()
+            val enviado = viewModel.login(mail, pass)
+            if (!enviado) Toast.makeText(
+                this,
+                "Ingrese usuario y contraseña",
+                Toast.LENGTH_SHORT
+            ).show()
         }
-        }
+    }
 
 
     private fun onLogged(user: FirebaseUser) {

@@ -13,9 +13,8 @@ import com.belutrac.challengefinal.login.LoginActivity
 import com.belutrac.challengefinal.login.LoginViewModel
 import com.google.android.material.tabs.TabLayout
 
-class MainActivity : AppCompatActivity(){
-    private lateinit var loginViewModel : LoginViewModel
-    private lateinit var mainMenu : Menu
+class MainActivity : AppCompatActivity() {
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,38 +25,41 @@ class MainActivity : AppCompatActivity(){
 
         tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                var navController = findNavController(R.id.main_navigation_container)
+                val navController = findNavController(R.id.main_navigation_container)
                 val tabItem = tab.position
 
-                if(tabItem == 0){
-                    navController.popBackStack(R.id.mainFragment,false)
+                if (tabItem == 0) {
+                    navController.popBackStack(R.id.mainFragment, false)
                 }
 
-              if(tabItem == 1){
-                 navController.popBackStack(R.id.mainFragment,false)
-                  navController.navigate(MainFragmentDirections.actionMainFragmentToFavFragment2())
+                if (tabItem == 1) {
+                    navController.popBackStack(R.id.mainFragment, false)
+                    navController.navigate(MainFragmentDirections.actionMainFragmentToFavFragment2())
 
-              }
+                }
 
-                if(tabItem == 2){
-                    navController.popBackStack(R.id.mainFragment,false)
-                    findNavController(R.id.main_navigation_container).navigate(MainFragmentDirections.actionMainFragmentToMapsFragment())
+                if (tabItem == 2) {
+                    navController.popBackStack(R.id.mainFragment, false)
+                    findNavController(R.id.main_navigation_container).navigate(
+                        MainFragmentDirections.actionMainFragmentToMapsFragment()
+                    )
                 }
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu,menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) : Boolean{
-        if(item.itemId == R.id.log_out_item){
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.log_out_item) {
             loginViewModel.logout()
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }

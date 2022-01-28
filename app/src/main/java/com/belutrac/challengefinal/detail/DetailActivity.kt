@@ -18,37 +18,37 @@ import com.bumptech.glide.request.target.Target
 
 
 class DetailActivity : AppCompatActivity() {
-    companion object{
+    companion object {
         const val TEAM_KEY = "team key"
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityDetailBinding.inflate(layoutInflater)
-        val extra= intent?.extras
-        val teamInfo =  extra?.getParcelable<Team>(TEAM_KEY)
+        val extra = intent?.extras
+        val teamInfo = extra?.getParcelable<Team>(TEAM_KEY)
 
-        if( teamInfo == null){
+        if (teamInfo == null) {
             finish()
         }
 
         binding.tvName.text = teamInfo?.name
         binding.tvFormedYear.text = getString(R.string.founded_in_year, teamInfo?.formedYear)
         binding.tvDescription.text = teamInfo?.description ?: ""
-        binding.tvStadiumCapacity.text = getString(R.string.capacity_text,
+        binding.tvStadiumCapacity.text = getString(
+            R.string.capacity_text,
             teamInfo?.stadiumCapacity
         )
         binding.tvStadiumName.text = teamInfo?.stadiumName ?: ""
         binding.tvStadiumLocation.text = teamInfo?.location ?: ""
 
-        if(teamInfo?.website?.isNotBlank() == true)
-        {
+        if (teamInfo?.website?.isNotBlank() == true) {
             binding.webOficial.setOnClickListener {
-                var uri = Uri.parse("https://".plus(teamInfo.website))
-                var intent = Intent(Intent.ACTION_VIEW,uri)
+                val uri = Uri.parse("https://".plus(teamInfo.website))
+                val intent = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(intent)
             }
-        }else
-        {
+        } else {
             binding.webOficial.visibility = View.INVISIBLE
         }
 
@@ -56,8 +56,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    fun loadImage(imageView: ImageView, imgUrl: String)
-    {
+    fun loadImage(imageView: ImageView, imgUrl: String) {
         Glide.with(this).load(imgUrl).listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(
                 e: GlideException?,

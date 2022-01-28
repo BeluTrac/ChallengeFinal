@@ -10,22 +10,22 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class LoginViewModel(app : Application) : AndroidViewModel(app) {
+class LoginViewModel(app: Application) : AndroidViewModel(app) {
 
     private var auth: FirebaseAuth = Firebase.auth
 
-    private val _state = MutableLiveData(State(false,null))
+    private val _state = MutableLiveData(State(false, null))
 
-    val state : LiveData<State> = _state
+    val state: LiveData<State> = _state
 
     data class State(
         val loginError: Boolean,
         val user: FirebaseUser?
     )
 
-    init{
+    init {
         val user = auth.currentUser
-        if(user != null){
+        if (user != null) {
             _state.value = (State(
                 loginError = false,
                 user = user
@@ -33,31 +33,31 @@ class LoginViewModel(app : Application) : AndroidViewModel(app) {
         }
     }
 
-    fun login(mail: String, pass: String) : Boolean{
-        if(mail.isNotBlank()&& pass.isNotBlank()){
-            auth.signInWithEmailAndPassword(mail,pass)
+    fun login(mail: String, pass: String): Boolean {
+        if (mail.isNotBlank() && pass.isNotBlank()) {
+            auth.signInWithEmailAndPassword(mail, pass)
                 .addOnCompleteListener { task ->
-                    if(task.isSuccessful){
+                    if (task.isSuccessful) {
                         _state.value = State(
                             false,
                             auth.currentUser
                         )
                         Log.d("login", "success")
-                    }else{
+                    } else {
                         _state.value = State(
                             true,
                             null
                         )
-                        Log.d("login","failure",task.exception)
+                        Log.d("login", "failure", task.exception)
                     }
                 }
             return true
         } else {
             return false
-            }
         }
+    }
 
-    fun logout(){
+    fun logout() {
         auth.signOut()
         _state.value = State(
             false,
@@ -65,7 +65,7 @@ class LoginViewModel(app : Application) : AndroidViewModel(app) {
         )
     }
 
-    fun userLogged(): Boolean{
+    fun userLogged(): Boolean {
         return !state.value?.loginError!! && state.value?.user != null
     }
 }
