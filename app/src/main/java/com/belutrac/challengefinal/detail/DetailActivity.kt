@@ -33,14 +33,28 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.tvName.text = teamInfo?.name
-        binding.tvFormedYear.text = getString(R.string.founded_in_year, teamInfo?.formedYear)
+
+        if(teamInfo?.formedYear == "0")
+        {
+            binding.tvFormedYear.visibility = View.GONE
+        }else
+        {
+            binding.tvFormedYear.text = getString(R.string.founded_in_year, teamInfo?.formedYear)
+        }
+
         binding.tvDescription.text = teamInfo?.description ?: ""
-        binding.tvStadiumCapacity.text = getString(
+
+        binding.tvStadiumCapacity.text = if (teamInfo?.stadiumCapacity == "0") "Datos no disponibles" else getString(
             R.string.capacity_text,
             teamInfo?.stadiumCapacity
         )
-        binding.tvStadiumName.text = teamInfo?.stadiumName ?: ""
-        binding.tvStadiumLocation.text = teamInfo?.location ?: ""
+        binding.tvStadiumName.text =  if (teamInfo?.stadiumName.isNullOrBlank()) "Datos no disponibles" else teamInfo?.stadiumName
+
+        if(teamInfo?.location.isNullOrBlank()) {
+            binding.tvStadiumLocation.visibility = View.GONE
+        }else {
+            binding.tvStadiumLocation.text = teamInfo?.location
+        }
 
         if (teamInfo?.website?.isNotBlank() == true) {
             binding.webOficial.setOnClickListener {
