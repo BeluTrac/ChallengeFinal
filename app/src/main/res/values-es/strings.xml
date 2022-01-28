@@ -17,4 +17,11 @@
     <string name="search">Buscar</string>
     <string name="search_hint">Buscar</string>
     <string name="there_are_no_favourites" >No hay favoritos</string>
+    <string name="facebook_button">Boton de facebook</string>
+    <string name="twitter_button">Boton de twitter</string>
+    <string name="instagram_button">Boton de instagram</string>
+    <string name="website_button">Boton de página web</string>
+    <string name="need_location_permission_dialog_title">Se necesita el permiso de ubicación</string>
+    <string name="need_location_permission_dialog_message">Se requiere este permiso para utilizar la aplicacion..</string>
+    <string name="no">No</string>
 </resources>
