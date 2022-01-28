@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import com.belutrac.challengefinal.R
 import com.belutrac.challengefinal.Team
@@ -56,14 +57,11 @@ class DetailActivity : AppCompatActivity() {
             binding.tvStadiumLocation.text = teamInfo?.location
         }
 
-        if (teamInfo?.website?.isNotBlank() == true) {
-            binding.webOficial.setOnClickListener {
-                val uri = Uri.parse("https://".plus(teamInfo.website))
-                val intent = Intent(Intent.ACTION_VIEW, uri)
-                startActivity(intent)
-            }
-        } else {
-            binding.webOficial.visibility = View.INVISIBLE
+        teamInfo?.run {
+            setUrlOnClick(teamInfo.website,binding.websiteImgbtn)
+            setUrlOnClick(teamInfo.facebookUrl,binding.facebookImgbtn)
+            setUrlOnClick(teamInfo.twitterUrl,binding.twitterImgbtn)
+            setUrlOnClick(teamInfo.instagramUrl,binding.instagramImgbtn)
         }
 
         teamInfo?.imgUrl?.let { loadImage(binding.imgTeam, it) }
@@ -92,5 +90,18 @@ class DetailActivity : AppCompatActivity() {
                 return false
             }
         }).error(R.drawable.ic_baseline_image_not_supported_24).into(imageView)
+    }
+
+    fun setUrlOnClick(url : String, imgBtn : ImageButton)
+    {
+        if (url.isNotBlank()) {
+            imgBtn.setOnClickListener {
+                val uri = Uri.parse("https://".plus(url))
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(intent)
+            }
+        } else {
+            imgBtn.visibility = View.GONE
+        }
     }
 }

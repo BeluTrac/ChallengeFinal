@@ -7,10 +7,14 @@
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.240625" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.18" />
+        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/drawable/ic_facebook.xml" value="0.240625" />
+        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/drawable/ic_instagram.xml" value="0.16666666666666666" />
+        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/drawable/ic_twitter.xml" value="0.16666666666666666" />
+        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/drawable/ic_web.xml" value="0.16666666666666666" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout-v26/fragment_detail.xml" value="0.22395833333333334" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.2931972789115646" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout-w936dp/activity_login.xml" value="0.168359375" />
-        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/activity_detail.xml" value="0.22447916666666667" />
+        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/activity_detail.xml" value="0.5" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/activity_login.xml" value="0.22447916666666667" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/fav_team_list_item.xml" value="0.33" />

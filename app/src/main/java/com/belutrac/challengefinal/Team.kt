@@ -17,6 +17,9 @@ data class Team(@PrimaryKey val id: String,
                 val location: String,
                 val description: String,
                 val website: String,
+                val facebookUrl : String,
+                val twitterUrl : String,
+                val instagramUrl : String,
                 var isFav : Boolean
 ) : Parcelable{
 }

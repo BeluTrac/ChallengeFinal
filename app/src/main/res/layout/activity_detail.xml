@@ -27,7 +27,8 @@
                 android:id="@+id/img_team"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                tools:src="@drawable/boca_escudo" />
+                tools:src="@drawable/boca_escudo"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,11 +54,51 @@
                     android:layout_gravity="center"
                     tools:text="Fundado en 1999" />
 
-          <TextView
-              android:id="@+id/web_oficial"
+          <LinearLayout
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Web Oficial"></TextView>
+              android:orientation="horizontal"
+              android:layout_marginTop="12dp">
+
+              <ImageButton
+                  android:id="@+id/website_imgbtn"
+                  android:layout_width="32dp"
+                  android:layout_height="32dp"
+                  android:background="@color/white"
+                  android:padding="4dp"
+                  android:src="@drawable/ic_web"
+                  android:contentDescription="@string/website_button"/>
+
+              <ImageButton
+                  android:id="@+id/facebook_imgbtn"
+                  android:layout_width="32dp"
+                  android:layout_height="32dp"
+                  android:background="@color/white"
+                  android:layout_marginStart="16dp"
+                  android:padding="4dp"
+                  android:src="@drawable/ic_facebook"
+                  android:contentDescription="@string/facebook_button"/>
+
+              <ImageButton
+                  android:id="@+id/twitter_imgbtn"
+                  android:layout_width="32dp"
+                  android:layout_height="32dp"
+                  android:background="@color/white"
+                  android:padding="4dp"
+                  android:layout_marginStart="16dp"
+                  android:src="@drawable/ic_twitter"
+                  android:contentDescription="@string/twitter_button"/>
+
+              <ImageButton
+                  android:id="@+id/instagram_imgbtn"
+                  android:layout_width="32dp"
+                  android:layout_height="32dp"
+                  android:background="@color/white"
+                  android:padding="4dp"
+                  android:layout_marginStart="16dp"
+                  android:src="@drawable/ic_instagram"
+                  android:contentDescription="@string/instagram_button"/>
+          </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -70,12 +111,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/tv_stadium_name_text"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/stadium_name"
                 android:textStyle="bold" />
@@ -84,6 +125,8 @@
                 android:id="@+id/tv_stadium_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
                 tools:text="Estadio José María Minella" />
 
         </LinearLayout>

@@ -44,7 +44,6 @@ class MapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
 
-
         viewModel.itemMapLiveData.observe(requireActivity()) {
             mapFragment?.getMapAsync(callback)
         }
@@ -52,7 +51,6 @@ class MapsFragment : Fragment() {
         viewModel.teamsList.observe(requireActivity()) {
             viewModel.updateMap()
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

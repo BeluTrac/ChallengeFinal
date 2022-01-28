@@ -70,14 +70,17 @@ class MainRepository(application: Application) {
         for (team in teams) {
             val id = team.idTeam
             val name = team.strTeam ?: ""
-            val formedYear = team.intFormedYear ?: ""
+            val formedYear = team.intFormedYear ?:""
             val imgUrl = team.strTeamBadge ?: ""
             val stadiumName = team.strStadium ?: ""
             val stadiumCap = team.intStadiumCapacity ?: ""
             val stadiumLocation = team.strStadiumLocation ?: ""
             val description = team.strDescriptionEN ?: ""
             val website = team.strWebsite ?: ""
-            val myTeam = Team(id, name, formedYear,imgUrl,stadiumName,stadiumCap,stadiumLocation,description,website, false)
+            val twiiter = team.strTwitter ?: ""
+            val instagram = team.strInstagram ?: ""
+            val facebook = team.strFacebook ?: ""
+            val myTeam = Team(id, name, formedYear,imgUrl,stadiumName,stadiumCap,stadiumLocation,description,website,facebook,twiiter,instagram, false)
             teamList.add(myTeam)
         }
         return teamList
