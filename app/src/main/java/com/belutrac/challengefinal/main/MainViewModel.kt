@@ -43,13 +43,6 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
         }
     }
 
-    private fun parseFavs(teams: MutableList<Team>, favs: MutableList<Favorites>): MutableList<Team> {
-        for (myTeam in teams){
-            myTeam.isFav = favs.map { it.id }.contains(myTeam.id)
-        }
-        return teams
-    }
-
     fun updateFavorite(team : Team){
         viewModelScope.launch {
             repository.updateFavoriteTeam(team.id, !team.isFav)
@@ -74,12 +67,22 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
 
     fun reloadTeamsFromDatabase() {
         viewModelScope.launch {
-            _teamsList.value = repository.fetchTeamsByDatabase()
-            if (_teamsList.value!!.isEmpty())
+            val teams = repository.fetchTeamsByDatabase()
+            if (teams.isEmpty())
             {
                 reloadTeams()
+            }else
+            {
+                val favs = repository.fetchFavorites()
+                _teamsList.value = parseFavs(teams,favs)
             }
         }
     }
 
+    private fun parseFavs(teams: MutableList<Team>, favs: MutableList<Favorites>): MutableList<Team> {
+        for (myTeam in teams){
+            myTeam.isFav = favs.map { it.id }.contains(myTeam.id)
+        }
+        return teams
+    }
 }

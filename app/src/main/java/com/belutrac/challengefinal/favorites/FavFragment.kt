@@ -27,6 +27,16 @@ class FavFragment : Fragment() {
 
         viewModel.favList.observe(requireActivity(), { list ->
             adapter.submitList(list)
+
+            if(list.isEmpty())
+            {
+                binding.emptyView.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            }else
+            {
+                binding.emptyView.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
         })
 
         adapter.onItemClickListener = {

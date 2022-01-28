@@ -31,8 +31,6 @@ class MainFragment : Fragment() {
         val adapter = TeamAdapter(requireActivity())
         recyclerView.adapter = adapter
 
-
-
         adapter.onItemClickListener = {
             startActivityDetail(it)
         }

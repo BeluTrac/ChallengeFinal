@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Equipos de futbol</string>
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
     <string name="sign_in">Iniciar sesion</string>
@@ -15,4 +16,5 @@
     <string name="log_out">Cerrar sesion</string>
     <string name="search">Buscar</string>
     <string name="search_hint">Buscar</string>
+    <string name="there_are_no_favourites" >No hay favoritos</string>
 </resources>
