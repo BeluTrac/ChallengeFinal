@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.belutrac.challengefinal.R
 import com.belutrac.challengefinal.login.LoginActivity
 import com.belutrac.challengefinal.login.LoginViewModel
 import com.belutrac.challengefinal.main.MainActivity
+import com.bumptech.glide.Glide
 
 class SplashActivity : AppCompatActivity() {
 
@@ -21,6 +23,9 @@ class SplashActivity : AppCompatActivity() {
         val loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        val img = findViewById<ImageView>(R.id.img_splash)
+        Glide.with(this).asGif().load(R.drawable.pelota_sd).into(img)
 
         displayAppVersion()
 

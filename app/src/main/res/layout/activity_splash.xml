@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="center"
-        android:src="@drawable/pelota"/>
+        />
 
     <TextView
         android:layout_height="wrap_content"
