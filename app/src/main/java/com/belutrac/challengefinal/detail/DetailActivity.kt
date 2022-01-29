@@ -47,12 +47,12 @@ class DetailActivity : AppCompatActivity() {
         binding.tvDescription.text = teamInfo?.description ?: ""
 
         binding.tvStadiumCapacity.text =
-            if (teamInfo?.stadiumCapacity == "0") "Datos no disponibles" else getString(
+            if (teamInfo?.stadiumCapacity == "0") getString(R.string.Data_not_available) else getString(
                 R.string.capacity_text,
                 teamInfo?.stadiumCapacity
             )
         binding.tvStadiumName.text =
-            if (teamInfo?.stadiumName.isNullOrBlank()) "Datos no disponibles" else teamInfo?.stadiumName
+            if (teamInfo?.stadiumName.isNullOrBlank()) getString(R.string.Data_not_available) else teamInfo?.stadiumName
 
         if (teamInfo?.location.isNullOrBlank()) {
             binding.tvStadiumLocation.visibility = View.GONE

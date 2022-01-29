@@ -23,4 +23,5 @@
     <string name="need_location_permission_dialog_title">Need location permission</string>
     <string name="need_location_permission_dialog_message">You have to allow this permission to user the app.</string>
     <string name="no">No</string>
+    <string name="Data_not_available">Data not available</string>
 </resources>
