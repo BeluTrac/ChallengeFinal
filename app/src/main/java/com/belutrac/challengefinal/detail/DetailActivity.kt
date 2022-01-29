@@ -38,38 +38,37 @@ class DetailActivity : AppCompatActivity() {
 
         binding.tvName.text = teamInfo?.name
 
-        if(teamInfo?.formedYear == "0")
-        {
+        if (teamInfo?.formedYear == "0") {
             binding.tvFormedYear.visibility = View.GONE
-        }else
-        {
+        } else {
             binding.tvFormedYear.text = getString(R.string.founded_in_year, teamInfo?.formedYear)
         }
 
         binding.tvDescription.text = teamInfo?.description ?: ""
 
-        binding.tvStadiumCapacity.text = if (teamInfo?.stadiumCapacity == "0") "Datos no disponibles" else getString(
-            R.string.capacity_text,
-            teamInfo?.stadiumCapacity
-        )
-        binding.tvStadiumName.text =  if (teamInfo?.stadiumName.isNullOrBlank()) "Datos no disponibles" else teamInfo?.stadiumName
+        binding.tvStadiumCapacity.text =
+            if (teamInfo?.stadiumCapacity == "0") "Datos no disponibles" else getString(
+                R.string.capacity_text,
+                teamInfo?.stadiumCapacity
+            )
+        binding.tvStadiumName.text =
+            if (teamInfo?.stadiumName.isNullOrBlank()) "Datos no disponibles" else teamInfo?.stadiumName
 
-        if(teamInfo?.location.isNullOrBlank()) {
+        if (teamInfo?.location.isNullOrBlank()) {
             binding.tvStadiumLocation.visibility = View.GONE
-        }else {
+        } else {
             binding.tvStadiumLocation.text = teamInfo?.location
         }
 
         teamInfo?.run {
-            setUrlOnClick(teamInfo.website,binding.websiteImgbtn)
-            setUrlOnClick(teamInfo.facebookUrl,binding.facebookImgbtn)
-            setUrlOnClick(teamInfo.twitterUrl,binding.twitterImgbtn)
-            setUrlOnClick(teamInfo.instagramUrl,binding.instagramImgbtn)
+            setUrlOnClick(teamInfo.website, binding.websiteImgbtn)
+            setUrlOnClick(teamInfo.facebookUrl, binding.facebookImgbtn)
+            setUrlOnClick(teamInfo.twitterUrl, binding.twitterImgbtn)
+            setUrlOnClick(teamInfo.instagramUrl, binding.instagramImgbtn)
         }
 
         teamInfo?.imgUrl?.let { loadImage(binding.imgTeam, it) }
         setContentView(binding.root)
-
     }
 
     private fun loadImage(imageView: ImageView, imgUrl: String) {
@@ -96,8 +95,7 @@ class DetailActivity : AppCompatActivity() {
         }).error(R.drawable.ic_baseline_image_not_supported_24).into(imageView)
     }
 
-    private fun setUrlOnClick(url : String, imgBtn : ImageButton)
-    {
+    private fun setUrlOnClick(url: String, imgBtn: ImageButton) {
         if (url.isNotBlank()) {
             imgBtn.setOnClickListener {
                 val uri = Uri.parse("https://".plus(url))
@@ -111,7 +109,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
-        if(item.itemId==android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             onBackPressed()
         }
         return true

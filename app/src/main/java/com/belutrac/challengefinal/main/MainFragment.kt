@@ -44,20 +44,20 @@ class MainFragment : Fragment() {
         })
 
         viewModel.statusLiveData.observe(requireActivity(), {
-           when(it){
-               ApiResponseStatus.LOADING -> {
-                   binding.loadingWheel.visibility = View.VISIBLE
-               }
-               ApiResponseStatus.DONE -> {
-                   binding.loadingWheel.visibility = View.GONE
-               }
-               ApiResponseStatus.NOT_INTERNET_CONNECTION-> {
-                   binding.loadingWheel.visibility = View.GONE
-               }
-               null -> {
+            when (it) {
+                ApiResponseStatus.LOADING -> {
+                    binding.loadingWheel.visibility = View.VISIBLE
+                }
+                ApiResponseStatus.DONE -> {
+                    binding.loadingWheel.visibility = View.GONE
+                }
+                ApiResponseStatus.NOT_INTERNET_CONNECTION -> {
+                    binding.loadingWheel.visibility = View.GONE
+                }
+                null -> {
 
-               }
-           }
+                }
+            }
 
         })
         viewModel.reloadTeamsFromDatabase()
