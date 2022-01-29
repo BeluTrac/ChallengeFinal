@@ -11,14 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.belutrac.challengefinal.R
 import com.belutrac.challengefinal.Team
 import com.belutrac.challengefinal.databinding.FavTeamListItemBinding
-import com.belutrac.challengefinal.databinding.TeamListItemBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-
-private val TAG = FavAdapter::class.java.simpleName
 
 class FavAdapter(val context: Context) : ListAdapter<Team, FavAdapter.TeamViewHolder>(
     DiffCallback
@@ -62,7 +59,7 @@ class FavAdapter(val context: Context) : ListAdapter<Team, FavAdapter.TeamViewHo
             }
         }
 
-        fun loadImage(imageView: ImageView, imgUrl: String) {
+        private fun loadImage(imageView: ImageView, imgUrl: String) {
             Glide.with(context).load(imgUrl).listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,

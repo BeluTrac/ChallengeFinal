@@ -11,8 +11,6 @@ import com.belutrac.challengefinal.database.Favorites
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 
-private val TAG = MainViewModel::class.java.simpleName
-
 class MainViewModel (application: Application): AndroidViewModel(application) {
 
     private var _teamsList = MutableLiveData<MutableList<Team>>()

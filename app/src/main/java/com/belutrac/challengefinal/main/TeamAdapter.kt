@@ -17,7 +17,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
-private val TAG = TeamAdapter::class.java.simpleName
 
 class TeamAdapter (val context: Context) : ListAdapter<Team, TeamAdapter.TeamViewHolder>(
     DiffCallback
@@ -68,7 +67,7 @@ class TeamAdapter (val context: Context) : ListAdapter<Team, TeamAdapter.TeamVie
             }
         }
 
-        fun setFavIcn(isFav : Boolean){
+        private fun setFavIcn(isFav : Boolean){
             if(isFav)
             {
                 binding.icnFav.setImageResource(R.drawable.ic_baseline_favorite_24)
@@ -78,7 +77,7 @@ class TeamAdapter (val context: Context) : ListAdapter<Team, TeamAdapter.TeamVie
             }
         }
 
-        fun loadImage(imageView: ImageView, imgUrl: String)
+        private fun loadImage(imageView: ImageView, imgUrl: String)
         {
             Glide.with(context).load(imgUrl).listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(

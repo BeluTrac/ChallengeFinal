@@ -20,7 +20,7 @@ class FavViewModel(application: Application) : AndroidViewModel(application) {
         loadFavorites()
     }
 
-    fun loadFavorites() {
+    private fun loadFavorites() {
         viewModelScope.launch {
             _favList.value = repository.fetchFavTeams().toMutableList()
         }

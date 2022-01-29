@@ -5,16 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.belutrac.challengefinal.R
 import com.belutrac.challengefinal.databinding.ActivityLoginBinding
 import com.belutrac.challengefinal.main.MainActivity
 import com.google.firebase.auth.FirebaseUser
-import javax.security.auth.login.LoginException
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var viewModel: LoginViewModel
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
