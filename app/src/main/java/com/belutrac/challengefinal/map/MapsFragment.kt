@@ -37,18 +37,23 @@ class MapsFragment : Fragment() {
                 marker.snippet(itemMap.team.stadiumName)
             }
             googleMap.addMarker(marker)
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(itemMap.latlng, DEFAULT_MAP_SCALE))
+
         }
 
         if (viewModel.teamsList.value?.size!! > 1) {
             viewModel.updateMap()
-        }else{
-            val userLatLng = LatLng(userLocation.latitude, userLocation.longitude)
-            val userMarker = MarkerOptions().position(userLatLng)
-            googleMap.addMarker(userMarker)
         }
 
     }
+
+    private val addUsercallback = OnMapReadyCallback { googleMap ->
+        val userLatLng = LatLng(userLocation.latitude, userLocation.longitude)
+        val userMarker = MarkerOptions().position(userLatLng)
+        googleMap.addMarker(userMarker)
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, DEFAULT_MAP_SCALE))
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,6 +85,8 @@ class MapsFragment : Fragment() {
             if (location != null) {
                 userLocation.latitude = location.latitude
                 userLocation.longitude = location.longitude
+                val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+                mapFragment?.getMapAsync(addUsercallback)
                 setupMap()
             }
         }
