@@ -19,10 +19,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 private const val LOCATION_PERMISSION_REQUEST_CODE = 2000
-private const val DEFAULT_MAP_SCALE = 1.0f
+private const val DEFAULT_MAP_SCALE = 4.0f
+private const val DEFAULT_MAP_SCALE_USER = 13.0f
 class MapsFragment : Fragment() {
 
     private lateinit var viewModel: MapViewModel
@@ -32,7 +35,7 @@ class MapsFragment : Fragment() {
         val itemMap = viewModel.itemMapLiveData.value
 
         itemMap?.run {
-            val marker = MarkerOptions().position(itemMap.latlng).title(itemMap.team.name)
+            val marker = MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).position(itemMap.latlng).title(itemMap.team.name)
             if (itemMap.team.stadiumName.isNotBlank()) {
                 marker.snippet(itemMap.team.stadiumName)
             }
@@ -51,6 +54,10 @@ class MapsFragment : Fragment() {
         val userMarker = MarkerOptions().position(userLatLng)
         googleMap.addMarker(userMarker)
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, DEFAULT_MAP_SCALE))
+
+        requireActivity().findViewById<FloatingActionButton>(R.id.my_location_button).setOnClickListener {
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, DEFAULT_MAP_SCALE_USER))
+        }
     }
 
 
@@ -63,6 +70,7 @@ class MapsFragment : Fragment() {
         viewModel = ViewModelProvider(this)[MapViewModel::class.java]
         setHasOptionsMenu(true)
         checkLocationPermission()
+
         return inflater.inflate(R.layout.fragment_maps, container, false)
     }
 
