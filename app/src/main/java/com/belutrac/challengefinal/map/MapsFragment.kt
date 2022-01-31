@@ -43,7 +43,7 @@ class MapsFragment : Fragment() {
 
         }
 
-        if (viewModel.teamsList.value?.size!! > 1) {
+        if (viewModel.teamsList.value?.size!! >= 1) {
             viewModel.updateMap()
         }
 
