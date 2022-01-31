@@ -14,6 +14,7 @@ import com.belutrac.challengefinal.Team
 import com.belutrac.challengefinal.api.ApiResponseStatus
 import com.belutrac.challengefinal.databinding.FragmentMainBinding
 import com.belutrac.challengefinal.detail.DetailActivity
+import com.google.android.material.tabs.TabLayout
 
 class MainFragment : Fragment() {
 
@@ -30,6 +31,9 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         val adapter = TeamAdapter(requireActivity())
         recyclerView.adapter = adapter
+
+        var tab = requireActivity().findViewById<TabLayout>(R.id.tabLayout)
+        tab.getTabAt(0)?.select()
 
         adapter.onItemClickListener = {
             startActivityDetail(it)
@@ -55,7 +59,6 @@ class MainFragment : Fragment() {
                     binding.loadingWheel.visibility = View.GONE
                 }
                 null -> {
-
                 }
             }
 
