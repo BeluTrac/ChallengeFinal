@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Challenge</string>
+    <string name="app_name" translatable="false">Equipos de futbol</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign in</string>
