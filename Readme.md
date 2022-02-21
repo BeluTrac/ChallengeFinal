@@ -15,13 +15,13 @@ En caso de que no se encuentre un usuario logueado, luego de transcurrido el tie
 
 A continuacion puede observarse la vista de login, que contiene los campos EditText necesarios y el boton para loguearse.
 
-![Vista de login](./images_readme/Login.jpeg)
+![Vista de login](./images_readme/login2.jpeg)
 
 En caso de que no se ingrese un usuario y contraseña o que los mismos sean invalidos, se le informara al usuario mediante mensajes de tipo Toast.
 
 Una vez logueado el usuario, se ingresa a la vista principal que se observa a continuacion.
 
-![Vista de main](./images_readme/main.jpeg)
+![Vista de main](./images_readme/main2.jpeg)
 
 En esta se observa un tabLayout que permite la navegacion entre la vista principal, la que contiene los favoritos y la que permite visualizar en un mapa la ubicacion de los equipos.
 
@@ -42,7 +42,7 @@ La api utilizada envia la descripcion en varios idiomas, se escogió mostrar la 
 
 A continuacion se observa la vista de detalles.
 
-![Vista de detalles](./images_readme/detail.jpeg)
+![Vista de detalles](./images_readme/detail2.jpeg)
 
 Debajo del texto que indica el año en el que fue fundado el equipo, pueden observarse una serie de iconos pertenecientes el primero a una pagina web y el resto a redes sociales. Estos son botones de tipo ImageButton que permiten mostrar la pagina web del equipo o la pagina de facebook, twitter o instagram. En caso de que un equipo no contenga una de estas redes sociales, el icono no se muestra. 
 
@@ -50,15 +50,15 @@ Con el boton ubicado en el medio del tabLayout se puede acceder a la vista de fa
 Si se presiona un item, nuevamente se abre la vista de detalles explicada anteriormente.
 En caso de que ningun equipo se haya seleccionado como favorito, se muestra un mensaje indicando esto.
 
-![Vista de favoritos](./images_readme/Favoritos.jpeg)
+![Vista de favoritos](./images_readme/favs2.jpeg)
 
 El tercer boton del tabLayout permite abrir un mapa que contiene la ubicacion de todos los equipos que tienen dicha informacion y la informacion del usuario. Para esto, se requieren permisos de ubicacion.
 Este mapa muestra con marcadores en color verde los diferentes equipos y en color rojo la ubicacion del usuario.
 
-![Vista de favoritos](./images_readme/map1.jpeg)
+![Vista de favoritos](./images_readme/map3.jpeg)
 
 En caso de seleccionar un marcador perteneciente a un equipo se muestra el nombre del mismo y del estadio. En la esquina inferior derecha se encuentra un boton que permite mover la camara a la ubicacion del usuario.
 
-![Vista de favoritos](./images_readme/map2.jpeg)
+![Vista de favoritos](./images_readme/map_4.jpeg)
 
 
