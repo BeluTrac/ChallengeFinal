@@ -24,4 +24,6 @@
     <string name="need_location_permission_dialog_message">Se requiere este permiso para utilizar la aplicacion..</string>
     <string name="no">No</string>
     <string name="Data_not_available">Datos no disponibles</string>
+    <string name="favourites">Favoritos</string>
+    <string name="map">Mapa</string>
 </resources>

@@ -26,11 +26,7 @@ class MapViewModel (application: Application): AndroidViewModel(application) {
 
     private var repository = MainRepository(application)
 
-    init{
-        loadTeams()
-    }
-
-    private fun loadTeams() {
+    fun loadTeams() {
         viewModelScope.launch {
             _teamsList.value = repository.fetchTeamsByDatabase()
         }
