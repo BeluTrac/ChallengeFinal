@@ -8,16 +8,16 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.belutrac.challengefinal.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="@string/teams" />
 
     <fragment
         android:id="@+id/favFragment"
         android:name="com.belutrac.challengefinal.favorites.FavFragment"
-        android:label="fragment_fav"
+        android:label="@string/favourites"
         tools:layout="@layout/fragment_fav" />
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.belutrac.challengefinal.map.MapsFragment"
-        android:label="fragment_maps"
+        android:label="@string/map"
         tools:layout="@layout/fragment_maps" />
 </navigation>

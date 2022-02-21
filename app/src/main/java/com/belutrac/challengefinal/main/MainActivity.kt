@@ -7,6 +7,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.belutrac.challengefinal.R
 import com.belutrac.challengefinal.api.WorkerUtil
@@ -27,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         val bottonNavigationView = binding.bottomNavigationView
         val navController = findNavController(R.id.fragmentContainerView)
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.mainFragment,R.id.favFragment,R.id.mapsFragment))
+        setupActionBarWithNavController(navController,appBarConfiguration)
         bottonNavigationView.setupWithNavController(navController)
 
     }
