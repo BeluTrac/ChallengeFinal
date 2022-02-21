@@ -24,7 +24,7 @@
     <string name="need_location_permission_dialog_message">You have to allow this permission to user the app.</string>
     <string name="no">No</string>
     <string name="Data_not_available">Data not available</string>
-    <string name="home">Home</string>
     <string name="favourites">Favourites</string>
     <string name="map">Map</string>
+    <string name="teams">Teams</string>
 </resources>

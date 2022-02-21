@@ -25,5 +25,6 @@
     <string name="no">No</string>
     <string name="Data_not_available">Datos no disponibles</string>
     <string name="favourites">Favoritos</string>
+    <string name="teams">Equipos</string>
     <string name="map">Mapa</string>
 </resources>
