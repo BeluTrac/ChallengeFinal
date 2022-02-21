@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.belutrac.challengefinal.R
 import com.belutrac.challengefinal.api.WorkerUtil
 import com.belutrac.challengefinal.databinding.ActivityMainBinding
@@ -21,36 +22,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val tab = binding.tabLayout
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-
         WorkerUtil.scheduleSync(this)
-        tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                val navController = findNavController(R.id.main_navigation_container)
-                val tabItem = tab.position
 
-                if (tabItem == 0) {
-                    navController.popBackStack(R.id.mainFragment, false)
-                }
+        val bottonNavigationView = binding.bottomNavigationView
+        val navController = findNavController(R.id.fragmentContainerView)
+        bottonNavigationView.setupWithNavController(navController)
 
-                if (tabItem == 1) {
-                    navController.popBackStack(R.id.mainFragment, false)
-                    navController.navigate(MainFragmentDirections.actionMainFragmentToFavFragment2())
-
-                }
-
-                if (tabItem == 2) {
-                    navController.popBackStack(R.id.mainFragment, false)
-                    findNavController(R.id.main_navigation_container).navigate(
-                        MainFragmentDirections.actionMainFragmentToMapsFragment()
-                    )
-                }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -62,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         if (item.itemId == R.id.log_out_item) {
             loginViewModel.logout()
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
         return super.onOptionsItemSelected(item)
     }

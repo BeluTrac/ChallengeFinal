@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -10,46 +10,23 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".main.MainActivity">
+        >
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/main_navigation_container"
-            android:name = "androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost = "true"
-            app:navGraph="@navigation/main_nav_graph"
-            android:layout_above="@+id/tabLayout"
-            />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:layout_alignParentBottom="true">
+            app:menu="@menu/botton_navigation_menu"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"/>
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/icn_home"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:icon="@drawable/ic_baseline_home_24"/>
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/icn_fav"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:icon="@drawable/ic_baseline_favorite_24"
-                />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/icn_map"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:icon="@drawable/ic_baseline_location_on_24"/>
-
-
-        </com.google.android.material.tabs.TabLayout>
+        <fragment
+            android:id="@+id/fragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/main_nav_graph"
+            android:layout_above="@+id/bottomNavigationView"/>
     </RelativeLayout>
 </layout>

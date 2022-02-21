@@ -32,9 +32,6 @@ class MainFragment : Fragment() {
         val adapter = TeamAdapter(requireActivity())
         recyclerView.adapter = adapter
 
-        var tab = requireActivity().findViewById<TabLayout>(R.id.tabLayout)
-        tab.getTabAt(0)?.select()
-
         adapter.onItemClickListener = {
             startActivityDetail(it)
         }

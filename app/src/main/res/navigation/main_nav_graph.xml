@@ -8,17 +8,10 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.belutrac.challengefinal.main.MainFragment"
-        android:label="MainFragment" >
-        <action
-            android:id="@+id/action_mainFragment_to_favFragment2"
-            app:destination="@id/favFragment2" />
-        <action
-            android:id="@+id/action_mainFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
-    </fragment>
+        android:label="MainFragment" />
 
     <fragment
-        android:id="@+id/favFragment2"
+        android:id="@+id/favFragment"
         android:name="com.belutrac.challengefinal.favorites.FavFragment"
         android:label="fragment_fav"
         tools:layout="@layout/fragment_fav" />

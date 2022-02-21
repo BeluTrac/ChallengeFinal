@@ -68,6 +68,7 @@ class MapsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(this)[MapViewModel::class.java]
+        viewModel.loadTeams()
         setHasOptionsMenu(true)
         checkLocationPermission()
 
@@ -149,8 +150,13 @@ class MapsFragment : Fragment() {
         }
 
         viewModel.itemMapLiveData.observe(requireActivity()) {
+            try{
             val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-            mapFragment?.getMapAsync(callback)
+            mapFragment?.getMapAsync(callback)}
+            catch (e : IllegalStateException)
+            {
+
+            }
         }
 
     }

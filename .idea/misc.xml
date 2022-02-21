@@ -16,7 +16,7 @@
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout-w936dp/activity_login.xml" value="0.168359375" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/activity_detail.xml" value="0.5" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/activity_login.xml" value="0.22447916666666667" />
-        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/activity_main.xml" value="0.1259259259259259" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/fav_team_list_item.xml" value="0.33" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/favourites_fragment.xml" value="0.22447916666666667" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/fragment_detail.xml" value="0.5" />
@@ -27,6 +27,7 @@
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/fragment_maps.xml" value="0.20885416666666667" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/home_fragment.xml" value="0.22447916666666667" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/layout/team_list_item.xml" value="0.25" />
+        <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/menu/botton_navigation_menu.xml" value="0.25" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/menu/main_menu.xml" value="0.221025641025641" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Documentos/ChallengeFinal/app/src/main/res/mipmap-anydpi-v26/ic_launcher_ball.xml" value="0.1" />

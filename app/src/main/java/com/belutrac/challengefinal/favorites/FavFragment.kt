@@ -22,6 +22,8 @@ class FavFragment : Fragment() {
         val adapter = FavAdapter(requireActivity())
         val recyclerView = binding.recyclerView
         val viewModel = ViewModelProvider(this)[FavViewModel::class.java]
+        viewModel.initFavList()
+        viewModel.loadFavorites()
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.adapter = adapter
 

@@ -16,14 +16,15 @@ class FavViewModel(application: Application) : AndroidViewModel(application) {
         get() = _favList
     private val repository = MainRepository(application)
 
-    init {
-        loadFavorites()
-    }
-
-    private fun loadFavorites() {
+    fun loadFavorites() {
         viewModelScope.launch {
             _favList.value = repository.fetchFavTeams().toMutableList()
         }
+    }
+
+    fun initFavList ()
+    {
+        _favList.value = mutableListOf()
     }
 
 }
